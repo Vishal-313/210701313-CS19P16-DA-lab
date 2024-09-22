@@ -1,0 +1,15 @@
+install.packages("e1071")
+library(e1071)
+data(iris)
+head(iris)
+set.seed(123) 
+sample_indices <- sample(1:nrow(iris), 0.7 * nrow(iris))
+train_data <- iris[sample_indices, ]
+test_data <- iris[-sample_indices, ]
+svm_model <- svm(Species ~ ., data = train_data, kernel = "radial")
+summary(svm_model)
+predictions <- predict(svm_model, newdata = test_data)
+confusion_matrix <- table(Predicted = predictions, Actual = test_data$Species)
+print(confusion_matrix)
+accuracy <- sum(diag(confusion_matrix)) / sum(confusion_matrix)
+cat("Accuracy:", accuracy * 100, "%\n")
