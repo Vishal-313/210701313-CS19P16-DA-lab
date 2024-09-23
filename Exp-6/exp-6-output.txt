@@ -1,0 +1,126 @@
+dv@dv:~$ pip install pandas 
+Defaulting to user installation because normal site-packages is not writeable
+Collecting pandas
+  Downloading pandas-2.2.3-cp310-cp310-manylinux_2_17_x86_64.manylinux2014_x86_64.whl (13.1 MB)
+     ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 13.1/13.1 MB 1.7 MB/s eta 0:00:00
+Collecting tzdata>=2022.7
+  Downloading tzdata-2024.1-py2.py3-none-any.whl (345 kB)
+     ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 345.4/345.4 KB 2.3 MB/s eta 0:00:00
+Collecting python-dateutil>=2.8.2
+  Downloading python_dateutil-2.9.0.post0-py2.py3-none-any.whl (229 kB)
+     ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 229.9/229.9 KB 3.1 MB/s eta 0:00:00
+Collecting numpy>=1.22.4
+  Downloading numpy-2.1.1-cp310-cp310-manylinux_2_17_x86_64.manylinux2014_x86_64.whl (16.3 MB)
+     ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 16.3/16.3 MB 2.8 MB/s eta 0:00:00
+Requirement already satisfied: pytz>=2020.1 in /usr/lib/python3/dist-packages (from pandas) (2022.1)
+Requirement already satisfied: six>=1.5 in /usr/lib/python3/dist-packages (from python-dateutil>=2.8.2->pandas) (1.16.0)
+Installing collected packages: tzdata, python-dateutil, numpy, pandas
+  WARNING: The scripts f2py and numpy-config are installed in '/home/dv/.local/bin' which is not on PATH.
+  Consider adding this directory to PATH or, if you prefer to suppress this warning, use --no-warn-script-location.
+Successfully installed numpy-2.1.1 pandas-2.2.3 python-dateutil-2.9.0.post0 tzdata-2024.1
+dv@dv:~$ pip install hdfs --break-system-packages
+
+Usage:   
+  pip install [options] <requirement specifier> [package-index-options] ...
+  pip install [options] -r <requirements file> [package-index-options] ...
+  pip install [options] [-e] <vcs project url> ...
+  pip install [options] [-e] <local project path> ...
+  pip install [options] <archive url/path> ...
+
+no such option: --break-system-packages
+dv@dv:~$ pip install hdfs 
+Defaulting to user installation because normal site-packages is not writeable
+Collecting hdfs
+  Downloading hdfs-2.7.3.tar.gz (43 kB)
+     ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 43.5/43.5 KB 104.4 kB/s eta 0:00:00
+  Preparing metadata (setup.py) ... done
+Collecting docopt
+  Downloading docopt-0.6.2.tar.gz (25 kB)
+  Preparing metadata (setup.py) ... done
+Requirement already satisfied: requests>=2.7.0 in /usr/lib/python3/dist-packages (from hdfs) (2.25.1)
+Requirement already satisfied: six>=1.9.0 in /usr/lib/python3/dist-packages (from hdfs) (1.16.0)
+Building wheels for collected packages: hdfs, docopt
+  Building wheel for hdfs (setup.py) ... done
+  Created wheel for hdfs: filename=hdfs-2.7.3-py3-none-any.whl size=34347 sha256=a5b2408e7e5548020742cbf8e2e2418464bf50b3f1c998f403abf6b2697c9234
+  Stored in directory: /home/dv/.cache/pip/wheels/e5/8d/b6/99c1c0a3ac5788c866b0ecd3f48b0134a5910e6ed26011800b
+  Building wheel for docopt (setup.py) ... done
+  Created wheel for docopt: filename=docopt-0.6.2-py2.py3-none-any.whl size=13723 sha256=d42ba61c69bcc99c2cbe07caac82ff966d1a27de51bf6eb3b775a5bc2ab9e20c
+  Stored in directory: /home/dv/.cache/pip/wheels/fc/ab/d4/5da2067ac95b36618c629a5f93f809425700506f72c9732fac
+Successfully built hdfs docopt
+Installing collected packages: docopt, hdfs
+  WARNING: The scripts hdfscli and hdfscli-avro are installed in '/home/dv/.local/bin' which is not on PATH.
+  Consider adding this directory to PATH or, if you prefer to suppress this warning, use --no-warn-script-location.
+Successfully installed docopt-0.6.2 hdfs-2.7.3
+dv@dv:~$ nano version.py
+dv@dv:~$ python3 version.py
+  File "/home/dv/version.py", line 11
+    python3 version.py
+            ^^^^^^^
+SyntaxError: invalid syntax
+dv@dv:~$ nano version.py
+dv@dv:~$ python3 version.py
+Traceback (most recent call last):
+  File "/home/dv/version.py", line 5, in <module>
+    print("Pandas version:", pd._version_)
+AttributeError: module 'pandas' has no attribute '_version_'. Did you mean: '__version__'?
+dv@dv:~$ nano version.py
+dv@dv:~$ python3 version.py
+Pandas version: 2.2.3
+HDFS status: {'accessTime': 0, 'blockSize': 0, 'childrenNum': 0, 'fileId': 16385, 'group': 'supergroup', 'length': 0, 'modificationTime': 0, 'owner': 'dv', 'pathSuffix': '', 'permission': '755', 'replication': 0, 'snapshotEnabled': True, 'storagePolicy': 0, 'type': 'DIRECTORY'}
+dv@dv:~$ nano emp.json
+dv@dv:~$ hdfs dfs -ls /home/hadoop/
+ls: `/home/hadoop/': No such file or directory
+dv@dv:~$ hdfs dfs -mkdir -p /home/hadoop/
+
+dv@dv:~$ 
+dv@dv:~$ hdfs dfs -put /home/dv/emp.json /home/hadoop/
+dv@dv:~$ hdfs dfs -ls /home/hadoop/
+Found 1 items
+-rw-r--r--   1 dv supergroup        398 2024-09-21 23:35 /home/hadoop/emp.json
+dv@dv:~$ nano processdata.py
+dv@dv:~$ /home/dv/hadoop/bin/hdfs dfs -chmod 777 /home/hadoop
+-bash: /home/dv/hadoop/bin/hdfs: No such file or directory
+dv@dv:~$ hdfs dfs -chmod 777 /home/hadoop
+dv@dv:~$ python3 processdata.py
+Raw JSON Data: [
+    {"name": "John Doe", "age": 30, "department": "HR", "salary": 50000},
+    {"name": "Jane Smith", "age": 25, "department": "IT", "salary": 60000},
+    {"name": "Alice Johnson", "age": 35, "department": "Finance", "salary": 70000},
+    {"name": "Bob Brown", "age": 28, "department": "Marketing", "salary": 55000},
+    {"name": "Charlie Black", "age": 45, "department": "IT", "salary": 80000}
+]
+
+Filtered JSON file saved successfully.
+Projection: Select only name and salary columns
+            name  salary
+0       John Doe   50000
+1     Jane Smith   60000
+2  Alice Johnson   70000
+3      Bob Brown   55000
+4  Charlie Black   80000
+Aggregation: Calculate total salary
+Total Salary: 315000
+
+Count: Number of employees earning more than 50000
+Number of High Earners (>50000): 4
+
+Top 5 highest salary
+Top 5 Earners: 
+            name  age department  salary
+4  Charlie Black   45         IT   80000
+2  Alice Johnson   35    Finance   70000
+1     Jane Smith   25         IT   60000
+3      Bob Brown   28  Marketing   55000
+0       John Doe   30         HR   50000
+
+Skipped DataFrame (First 2 rows skipped): 
+            name  age department  salary
+2  Alice Johnson   35    Finance   70000
+3      Bob Brown   28  Marketing   55000
+4  Charlie Black   45         IT   80000
+
+Filtered DataFrame (IT department removed): 
+            name  age department  salary
+0       John Doe   30         HR   50000
+2  Alice Johnson   35    Finance   70000
+3      Bob Brown   28  Marketing   55000
